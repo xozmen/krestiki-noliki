@@ -61,3 +61,4 @@ const App = () =>  {
 }
 
 export default App
+// Throws an error when clickong after finishing game 
