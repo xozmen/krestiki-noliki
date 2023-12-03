@@ -9,7 +9,9 @@ const Cell = ({ id, cell, setCells, go, setGo, cells, winningMessage }) => {
           e.target.firstChild.classList.add("circle");
           handleCellChange("circle")
           setGo("cross");
+
         }
+        console.log (123)
         if (go === "cross") {
           e.target.firstChild.classList.add("cross");
           handleCellChange("cross")
@@ -19,6 +21,7 @@ const Cell = ({ id, cell, setCells, go, setGo, cells, winningMessage }) => {
     }
 
     const handleCellChange = (className) => {
+      console.log ("ABoba")
        const nextCells = cells.map((cell, index) => {
             if (index === id) {
                 return className
@@ -31,7 +34,7 @@ const Cell = ({ id, cell, setCells, go, setGo, cells, winningMessage }) => {
     }
   
     return (
-      <div className="square" id={id} onClick={!winningMessage && handleClick}>
+      <div className="square" id={id} onClick={!winningMessage ? handleClick : null }>
         <div className={cell}></div>
       </div>
     );

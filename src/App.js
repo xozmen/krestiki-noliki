@@ -7,6 +7,8 @@ const App = () =>  {
   const [winningMessage, setWinningMessage] = useState(null)
 
   const message = "it is now " + go + " 's turn."
+  let isDrawCircle = false;
+  let isDrawCross = false;
 
   const checkScore = () => {
     const winningCombos = [
@@ -14,13 +16,17 @@ const App = () =>  {
       [0,3,6], [1,4,7], [2,5,8],
       [0,4,8], [2,4,6]
     ]
-
+    console.log(cells)
+    let isFull = checkCells(cells);
      winningCombos.forEach(array => {
       let circleWins = array.every(cell => cells[cell] === "circle")
 
       if (circleWins) {
         setWinningMessage("Circle Wins!")
         return
+      }
+      else {
+        isDrawCircle = true;
       }
 
      })
@@ -32,9 +38,23 @@ const App = () =>  {
         setWinningMessage("Cross Wins!")
         return
       }
+      else {
+        isDrawCross = true;
+      }
 
      })
+     if (isDrawCross && isDrawCross && isFull) {
+      setWinningMessage("Draw")
+      return
+     }
   }
+
+    let checkCells = (cells) => {
+      let draw = cells.every(cell => cell != '');
+      // console.log(cells)
+      // console.log("test"+draw)
+      return draw;
+    }
 
   useEffect(() => {
     checkScore ()
